@@ -52,26 +52,6 @@ class _HomeState extends State<Home> {
 }
 
 
-class Completed extends StatefulWidget {
-  const Completed({super.key});
-
-  @override
-  State<Completed> createState() => _CompletedState();
-}
-
-class _CompletedState extends State<Completed> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: const Text("Completed Tasks", style: TextStyle(color: Colors.white),),
-        centerTitle: true,
-      ),
-    );
-  }
-}
-
 
 
 class Tasks extends StatefulWidget {
@@ -88,6 +68,43 @@ class _TasksState extends State<Tasks> {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: const Text("Your Tasks", style: TextStyle(color: Colors.white),),
+        centerTitle: true,
+      ),
+      body: ListView.separated(itemBuilder: (context, index) {
+        return ListTile(
+          title: Text("Task ${index+1}"),
+        );
+
+      },
+          separatorBuilder: (context, index) {
+              return const Divider(
+                height: 1,
+                thickness: 1,
+              );
+      },
+          itemCount: 5),
+    );
+  }
+}
+
+
+
+
+
+class Completed extends StatefulWidget {
+  const Completed({super.key});
+
+  @override
+  State<Completed> createState() => _CompletedState();
+}
+
+class _CompletedState extends State<Completed> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text("Completed Tasks", style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
     );
