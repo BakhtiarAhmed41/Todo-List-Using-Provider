@@ -1,32 +1,34 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:todo_list/model/task_model.dart';
 
-import '../model/task_model.dart';
-
-class TaskViewModel extends ChangeNotifier{
-
+class TaskViewModel extends ChangeNotifier {
   List<Task> tasks = [];
 
   String? taskName;
-  var dateController =  TextEditingController();
-  var timeController =  TextEditingController();
+  String? date;
+  String? time;
 
-  setTaskName(String? value){
+  void setTaskName(String? value) {
     taskName = value;
-    notifyListeners();
   }
 
-  setDate(String? date){
-
+  void setDate(String? value) {
+    date = value;
   }
 
-  setTime(String? time){
-
+  void setTime(String? value) {
+    time = value;
   }
 
-
-  addTask(){
-
+  void addTask() {
+    if (taskName != null && date != null && time != null) {
+      Task newTask = Task(taskName!, date!, time!);
+      tasks.add(newTask);
+      taskName = null;
+      date = null;
+      time = null;
+      notifyListeners();
+    }
   }
-
 }
